@@ -20,23 +20,23 @@ easy gan implementation with mnist data
 ##### 2. discriminator : discriminator는 가짜 이미지와 진짜 이미지를 구별해서 처리하려 합니다.  
 ##### 3. 서로가 서로를 이기려고 학습합니다.  
 ##### 4. 계속 반복을 하고 이 반복에 따라서 generator와 discriminator는 더 좋은 성능을 가지게 됩니다.  
-![ganimage1](./image/ganimage1.jpeg)  
-![ganimage2](./image/ganimage2.jpeg)  
-![ganimage3](./image/ganimage3.jpeg)  
+![ganimage1](./image/ganimage1.JPEG)  
+![ganimage2](./image/ganimage2.JPEG)  
+![ganimage3](./image/ganimage3.JPEG)  
 ---
 #### GAN's formulation  
 ##### GAN은 minimax 게임처럼 작동하게 됩니다. (minimax game. 최소극대화 또는 미니맥스는 결정이론, 게임이론에서 사용하는 개념으로 최악의 경우 발생 가능한 손실(최대손실)을 최소화 한다는 규칙이다. wikipedia.)  
 ##### discriminator는 reward를 최대화 하려고 합니다. MAX V(D, G)  
 ##### generator는 이와 반대로 discriminator의 reward를 최소화 하려고 합니다. (discriminator의 loss를 최대화 하려고 합니다)  
-![ganimage4](./image/ganimage4.jpeg)  
+![ganimage4](./image/ganimage4.JPEG)  
 ##### 위 식에 의거해 결국은 Nash 균형에 도달하게 됩니다. (Nash equilibrium. 내시 균형은 게임 이론에서 경쟁자 대응에 따라 최선의 선택을 하면 서로가 자신의 선택을 바꾸지 않는 균형상태를 말한다. 상대방이 현재 전략을 유지한다는 전제 하에 나 자신도 현재 전략을 바꿀 유인이 없는 상태를 말한다. wikipedia.)  
 ##### 유명한 비유법인 지폐위조범과 경찰의 예시에서, 지폐위조범은 generator로 가짜 지폐를 찍어냅니다. 경찰은 discriminator로 진짜 지폐를 가지고 가짜 지폐를 구분하려 합니다. 지폐위조범은 지폐를 사용하기 위해 더욱 진짜 지폐와 비슷해지도록 만들어내고, 경찰은 진짜 지폐와 구별하기 위해 더욱 정교한 방식으로 지폐를 판별하려고 합니다. 경찰은 결국 티끌 하나라도 다르면 바로 판별할 수 있는 방식을 얻어내지만, 지폐위조범도 또한 진짜 지폐와 같은 가짜 지폐를 만들게 됩니다.  
 ##### 이 최종적인 상황이 내시 균형에 놓은 상황이고 generator와 discriminator는 가장 높은 수준의 training을 가지게 됩니다.  
-![ganimage5](./image/ganimage5.jpeg)  
+![ganimage5](./image/ganimage5.JPEG)  
 ##### D(X) = 1/2, 즉 진짜인지 가짜인지 판별할 수 없는 상황을 의미합니다.  
 --- 
 #### vanishing gradient strikes back  
-![ganimage6](./image/ganimage6.jpeg)  
+![ganimage6](./image/ganimage6.JPEG)  
 ##### 두개의 네트워크가 트레이닝을 할때 discriminator가 너무 뛰어나면 반환되는 gradient값이 0이나 1에 매우 같아지게 됩니다. 그렇게 되면, generator가 gradient값이 제대로 반영되지 않아서 proceed가 일어나지 않습니다. 이와 반대로 generator가 너무 뛰어나면 discriminator가 real world sample을 fake로 판단할 확률이 증가합니다. 그래서 각자의 네트워크의 learning rates를 각각 설정해서 비슷한 학습 수준을 유지해야 합니다.  
 ---
 #### GAN drawbacks?  
